@@ -1,0 +1,68 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<main class="center-page login-page">
+    <div class="card login-card">
+        <div class="login-left">
+            <div class="login-header">
+                <h1 class="brand">Welcome Back!</h1>
+                <p class="muted">Sign in to your ShopEase Mart account</p>
+            </div>
+
+            <form action="{{ url_for('login') }}" method="post" class="login-form">
+                <div class="form-group">
+                    <label for="username_or_email" class="sr-only">Username / Email</label>
+                    <input 
+                        type="text" 
+                        id="username_or_email"
+                        name="username_or_email" 
+                        class="form-input"
+                        placeholder="Username or Email"
+                        required
+                        autofocus
+                    >
+                </div>
+
+                <div class="form-group">
+                    <label for="password" class="sr-only">Password</label>
+                    <input 
+                        type="password" 
+                        id="password"
+                        name="password" 
+                        class="form-input"
+                        placeholder="Password"
+                        required
+                    >
+                </div>
+
+                <button class="btn btn-primary btn-full" type="submit">Login</button>
+            </form>
+
+            <div class="login-footer">
+                <p class="forgot-link"><a href="#">Forgot password?</a></p>
+                <div class="divider">or</div>
+                <p class="signup-link">
+                    Don't have an account? <a href="{{ url_for('signup') }}">Sign up</a>
+                </p>
+            </div>
+        </div>
+
+        <div class="login-right">
+            <div class="illustration">
+                <svg viewBox="0 0 300 300" class="hero-illustration">
+                    <!-- Shopping bag illustration -->
+                    <circle cx="150" cy="80" r="50" fill="#e0e7ff" opacity="0.3"/>
+                    <rect x="100" y="120" width="100" height="120" rx="10" fill="none" stroke="#6C5CE7" stroke-width="2"/>
+                    <path d="M 110 120 Q 110 100 130 100 L 170 100 Q 190 100 190 120" fill="none" stroke="#6C5CE7" stroke-width="2"/>
+                    <line x1="120" y1="150" x2="180" y2="150" stroke="#6C5CE7" stroke-width="1.5" opacity="0.5"/>
+                    <line x1="120" y1="180" x2="180" y2="180" stroke="#6C5CE7" stroke-width="1.5" opacity="0.5"/>
+                    
+                    <!-- Security shield -->
+                    <path d="M 150 40 L 180 55 L 180 90 Q 150 110 150 110 Q 120 110 120 90 L 120 55 Z" fill="#6C5CE7" opacity="0.2"/>
+                </svg>
+            </div>
+            <p class="illustration-text">Secure checkout<br>in seconds</p>
+        </div>
+    </div>
+</main>
+{% endblock %}

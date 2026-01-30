@@ -1,0 +1,110 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<main class="center-page login-page">
+    <div class="card login-card">
+        <div class="login-left">
+            <div class="login-header">
+                <h1 class="brand">Create Account</h1>
+                <p class="muted">Join ShopEase Mart today</p>
+            </div>
+
+            <form action="{{ url_for('signup') }}" method="post" class="login-form signup-form">
+                <div class="form-group">
+                    <label for="full_name" class="sr-only">Full Name</label>
+                    <input 
+                        type="text" 
+                        id="full_name"
+                        name="full_name" 
+                        class="form-input"
+                        placeholder="John Doe"
+                        required
+                        autofocus
+                    >
+                </div>
+
+                <div class="form-group">
+                    <label for="email" class="sr-only">Email</label>
+                    <input 
+                        type="email" 
+                        id="email"
+                        name="email" 
+                        class="form-input"
+                        placeholder="your@email.com"
+                        required
+                    >
+                </div>
+
+                <div class="form-group">
+                    <label for="username" class="sr-only">Username</label>
+                    <input 
+                        type="text" 
+                        id="username"
+                        name="username" 
+                        class="form-input"
+                        placeholder="username"
+                        required
+                        minlength="3"
+                        maxlength="20"
+                    >
+                    <small class="form-help">3-20 characters, letters, numbers, underscore, hyphen</small>
+                </div>
+
+                <div class="form-group">
+                    <label for="password" class="sr-only">Password</label>
+                    <input 
+                        type="password" 
+                        id="password"
+                        name="password" 
+                        class="form-input"
+                        placeholder="Password (min 6 characters)"
+                        required
+                        minlength="6"
+                    >
+                </div>
+
+                <div class="form-group">
+                    <label for="confirm_password" class="sr-only">Confirm Password</label>
+                    <input 
+                        type="password" 
+                        id="confirm_password"
+                        name="confirm_password" 
+                        class="form-input"
+                        placeholder="Confirm Password"
+                        required
+                        minlength="6"
+                    >
+                </div>
+
+                <button class="btn btn-primary btn-full" type="submit">Create Account</button>
+            </form>
+
+            <div class="login-footer">
+                <p class="signup-link">
+                    Already have an account? <a href="{{ url_for('login') }}">Sign in</a>
+                </p>
+            </div>
+        </div>
+
+        <div class="login-right">
+            <div class="illustration">
+                <svg viewBox="0 0 300 300" class="hero-illustration">
+                    <!-- Welcome illustration -->
+                    <circle cx="150" cy="100" r="60" fill="none" stroke="#8a7bff" stroke-width="2"/>
+                    <path d="M 120 100 Q 150 120 180 100" fill="none" stroke="#8a7bff" stroke-width="2"/>
+                    <circle cx="140" cy="90" r="3" fill="#8a7bff"/>
+                    <circle cx="160" cy="90" r="3" fill="#8a7bff"/>
+                    
+                    <!-- Sign up message -->
+                    <rect x="80" y="180" width="140" height="80" rx="8" fill="none" stroke="#8a7bff" stroke-width="2"/>
+                    <line x1="85" y1="200" x2="215" y2="200" stroke="#8a7bff" stroke-width="1.5"/>
+                    <line x1="85" y1="215" x2="215" y2="215" stroke="#8a7bff" stroke-width="1.5" opacity="0.6"/>
+                    <line x1="85" y1="230" x2="215" y2="230" stroke="#8a7bff" stroke-width="1.5" opacity="0.6"/>
+                    <line x1="85" y1="245" x2="180" y2="245" stroke="#8a7bff" stroke-width="1.5" opacity="0.6"/>
+                </svg>
+            </div>
+            <p class="illustration-text">Start shopping<br>in minutes</p>
+        </div>
+    </div>
+</main>
+{% endblock %}

@@ -1,0 +1,79 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<header class="site-header">
+    <div class="container header-row">
+        <div class="logo">💳 Payment Gateway</div>
+    </div>
+</header>
+
+<main class="container success-page center-page">
+    <div class="card success-card">
+        <div class="success-animation">
+            <svg viewBox="0 0 100 100" class="success-checkmark" width="140" height="140" style="margin: 0 auto; display: block;">
+                <circle cx="50" cy="50" r="45" fill="none" stroke="#10b981" stroke-width="2" class="circle-animation"/>
+                <polyline points="30,50 45,65 70,35" fill="none" stroke="#10b981" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" class="checkmark-animation"/>
+            </svg>
+        </div>
+
+        <h1 class="success-title">Payment Successful!</h1>
+        <p class="success-subtitle">Your payment has been processed successfully</p>
+
+        <div class="receipt-box">
+            <div class="receipt-header">Receipt Details</div>
+
+            <div class="receipt-item">
+                <span class="receipt-label">Transaction ID</span>
+                <span class="receipt-value font-mono">{{ transaction_id }}</span>
+            </div>
+
+            <div class="receipt-item">
+                <span class="receipt-label">Payment Method</span>
+                <span class="receipt-value">
+                    {% if transaction['method'] == 'Card' %}
+                        💳 Card ending in {{ transaction['card_last_4'] }}
+                    {% elif transaction['method'] == 'UPI' %}
+                        📱 UPI ({{ transaction['upi_id'] }})
+                    {% elif transaction['method'] == 'Net Banking' %}
+                        🏦 {{ transaction['bank'] }} Net Banking
+                    {% elif transaction['method'] == 'Wallet' %}
+                        👛 {{ transaction['wallet'] }}
+                    {% endif %}
+                </span>
+            </div>
+
+            <div class="receipt-item">
+                <span class="receipt-label">Amount</span>
+                <span class="receipt-value">₹{{ transaction['amount'] }}</span>
+            </div>
+
+            <div class="receipt-item">
+                <span class="receipt-label">Date & Time</span>
+                <span class="receipt-value">{{ transaction['timestamp'] }}</span>
+            </div>
+
+            <div class="receipt-item">
+                <span class="receipt-label">Paid By</span>
+                <span class="receipt-value">{{ transaction['user'] }}</span>
+            </div>
+
+            <div class="receipt-footer">
+                <p>A confirmation email has been sent to your registered email address.</p>
+            </div>
+        </div>
+
+        <div class="success-actions">
+            <a href="{{ url_for('payment') }}" class="btn btn-primary btn-lg">
+                Make Another Payment
+            </a>
+            <button class="btn btn-secondary btn-lg" onclick="window.print()" style="margin-top: 8px;">
+                Print Receipt
+            </button>
+        </div>
+
+        <div class="success-note">
+            <p>Thank you for your payment! A copy of your receipt has been saved. You can print this page for your records.</p>
+        </div>
+    </div>
+</main>
+{% endblock %}
