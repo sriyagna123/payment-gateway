@@ -1,0 +1,129 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Payment Gateway — Demo</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-row">
+      <div class="logo">💳 Payment Gateway (Demo)</div>
+      <nav class="header-nav">
+        <a class="btn btn-ghost" href="#" id="github-link">View on GitHub</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container payment-container">
+    <div class="payment-content">
+      <section class="order-section">
+        <h2>Enter Amount</h2>
+        <form id="amountForm">
+          <div class="amount-input-box">
+            <label for="amount">Amount (₹)</label>
+            <div class="amount-input-wrapper">
+              <span class="currency-symbol">₹</span>
+              <input id="amount" name="amount" type="number" min="1" max="1000000" step="0.01" placeholder="Enter amount" required>
+            </div>
+            <small class="help-text">Min: ₹1 | Max: ₹10,00,000</small>
+            <button class="btn btn-primary btn-full" type="submit" style="margin-top:12px;">Set Amount</button>
+          </div>
+        </form>
+
+        <div id="currentAmount" class="amount-display hidden" aria-live="polite">
+          <div class="amount-display-content">
+            <span class="label">Total Amount</span>
+            <span class="amount" id="displayAmount">₹0.00</span>
+          </div>
+        </div>
+      </section>
+
+      <section class="payment-section">
+        <h2>Select Payment Method</h2>
+
+        <div class="tabs" role="tablist" aria-label="Payment Methods">
+          <button class="tab active" data-method="UPI">📱 UPI</button>
+          <button class="tab" data-method="Card">💳 Card</button>
+          <button class="tab" data-method="Net Banking">🏦 NetBanking</button>
+          <button class="tab" data-method="Wallet">👛 Wallet</button>
+        </div>
+
+        <div class="tab-contents">
+          <form id="UPI" class="payment-form tab-content active" data-method="UPI">
+            <legend>UPI Payment</legend>
+            <div class="form-group">
+              <label for="upi_id">UPI ID</label>
+              <input id="upi_id" name="upi_id" placeholder="username@bankname" required>
+            </div>
+            <button class="btn btn-primary btn-full pay-btn" type="button">Pay</button>
+          </form>
+
+          <form id="Card" class="payment-form tab-content" data-method="Card">
+            <legend>Card Payment</legend>
+            <div class="form-group">
+              <label for="cardholder_name">Cardholder Name</label>
+              <input id="cardholder_name" name="cardholder_name" placeholder="John Doe" required>
+            </div>
+            <div class="form-group">
+              <label for="card_number">Card Number</label>
+              <input id="card_number" name="card_number" placeholder="1234 5678 9012 3456" maxlength="19" required>
+            </div>
+            <div class="form-row">
+              <div class="form-group">
+                <label for="expiry_date">Expiry (MM/YY)</label>
+                <input id="expiry_date" name="expiry_date" placeholder="12/25" maxlength="5" required>
+              </div>
+              <div class="form-group">
+                <label for="cvv">CVV</label>
+                <input id="cvv" name="cvv" placeholder="123" maxlength="4" required>
+              </div>
+            </div>
+            <button class="btn btn-primary btn-full pay-btn" type="button">Pay</button>
+          </form>
+
+          <form id="Net Banking" class="payment-form tab-content" data-method="Net Banking">
+            <legend>Net Banking</legend>
+            <div class="form-group">
+              <label for="bank">Select Bank</label>
+              <select id="bank" name="bank" required>
+                <option value="">Choose a bank...</option>
+                <option value="SBI">SBI</option>
+                <option value="HDFC">HDFC</option>
+                <option value="ICICI">ICICI</option>
+                <option value="Axis">Axis</option>
+              </select>
+            </div>
+            <button class="btn btn-primary btn-full pay-btn" type="button">Pay</button>
+          </form>
+
+          <form id="Wallet" class="payment-form tab-content" data-method="Wallet">
+            <legend>Digital Wallet</legend>
+            <div class="form-group">
+              <label for="wallet">Choose Wallet</label>
+              <select id="wallet" name="wallet" required>
+                <option value="">Choose a wallet...</option>
+                <option value="Paytm">Paytm</option>
+                <option value="PhonePe">PhonePe</option>
+                <option value="GooglePay">Google Pay</option>
+              </select>
+            </div>
+            <button class="btn btn-primary btn-full pay-btn" type="button">Pay</button>
+          </form>
+        </div>
+
+        <div id="receiptArea" class="hidden" aria-live="polite"></div>
+
+        <div class="payment-security">
+          <span class="security-badge">🔒</span>
+          <span class="security-text">This is a static demo — no real payments.</span>
+        </div>
+
+      </section>
+    </div>
+  </main>
+
+  <script src="js/main.js"></script>
+</body>
+</html>
